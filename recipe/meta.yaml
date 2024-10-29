@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/curated_tokenizers-{{ version }}.tar.gz
-  sha256: 0a8f8c527bc93a6404ec0ba8f0df215b8c205edc81a05617fbbe705438804094
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/curated-tokenizers-{{ version }}.tar.gz
+  sha256: c93d47e54ab3528a6db2796eeb4bdce5d44e8226c671e42c2f23522ab1d0ce25
 
 build:
   skip: true  # [py<36]
@@ -19,10 +19,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - python
-    - setuptools
     - cython >=0.25
     - pip
+    - python
+    - setuptools
+    - wheel
   run:
     - python
     - regex >=2022
@@ -37,8 +38,12 @@ test:
 
 about:
   home: https://github.com/explosion/curated-tokenizers
+  dev_url: https://github.com/explosion/curated-tokenizers
+  doc_url: https://github.com/explosion/curated-tokenizers
   summary: Lightweight piece tokenization library
+  description: spaCy entry points for Curated Transformers.
   license: MIT
+  license_family: MIT
   license_file: LICENSE
 
 extra:
