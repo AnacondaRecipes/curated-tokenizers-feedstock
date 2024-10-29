@@ -1,0 +1,46 @@
+{% set name = "curated-tokenizers" %}
+{% set version = "0.0.9" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/curated_tokenizers-{{ version }}.tar.gz
+  sha256: 0a8f8c527bc93a6404ec0ba8f0df215b8c205edc81a05617fbbe705438804094
+
+build:
+  skip: true  # [py<36]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - setuptools
+    - cython >=0.25
+    - pip
+  run:
+    - python
+    - regex >=2022
+
+test:
+  imports:
+    - curated_tokenizers
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/explosion/curated-tokenizers
+  summary: Lightweight piece tokenization library
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - skupr-anaconda
